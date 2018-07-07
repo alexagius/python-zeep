@@ -31,9 +31,16 @@ def get_security_header(doc):
 
 
 def get_timestamp(timestamp=None):
-    timestamp = timestamp or datetime.datetime.utcnow()
-    timestamp = timestamp.replace(tzinfo=pytz.utc, microsecond=0)
-    return timestamp.isoformat()
+    # timestamp = timestamp or datetime.datetime.utcnow()
+    # timestamp = timestamp.replace(tzinfo=pytz.utc, microsecond=0)
+    # return timestamp.isoformat()
+    timestamp = timestamp or datetime.datetime.now(tz.gettz('America/Chicago'))  # =.utcnow()
+    # timestamp = timestamp.replace(tzinfo=pytz.utc, microsecond=
+    ###NEED TO IMPORT
+    import isodate
+    ###HOLY SHIT THIS IS MY EDIT AND IT WORKS
+    return datetime.datetime.utcnow().isoformat()[:-3] + 'Z'
+    # return timestamp.isoformat()
 
 
 def get_unique_id():
